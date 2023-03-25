@@ -1,0 +1,1 @@
+export default interface IUser {username: string, email: string, admin: boolean, experience: number, registrationDate: Date, _id: string}

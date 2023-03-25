@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Akshar&display=swap");
+.home-container {
+  color: white;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  .home-main-view {
+    width: calc(100% - 3.5rem);
+    background: radial-gradient(
+        66.5% 221.21% at 136.03% -61.44%,
+        rgba(161, 155, 217, 0.4) 0%,
+        rgba(161, 155, 217, 0) 92.09%
+      ),
+      radial-gradient(
+        93.54% 126.91% at 29.15% -56.29%,
+        rgba(233, 69, 96, 0.7) 0%,
+        rgba(233, 69, 96, 0) 92.09%
+      ),
+      radial-gradient(
+        86.19% 101.84% at -17.13% -24.8%,
+        rgba(0, 162, 254, 0.7) 0%,
+        rgba(0, 162, 254, 0) 92.09%
+      ),
+      #1a1a2e;
+    z-index: 1;
+    .home-nav-bar {
+      width: 100%;
+      height: 5rem;
+      header {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        padding-left: 1.8rem;
+        padding-right: 1.8rem;
+        .logo {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          a {
+            img {
+              width: 160px;
+              height: 36px;
+            }
+          }
+        }
+      }
+    }
+    .home-main {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      padding: 0;
+      .video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: -1;
+
+        img {
+          display: none;
+        }
+        video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          opacity: 0;
+          animation: fadeIn 2s forwards;
+          z-index: 2;
+        }
+      }
+      .bg-color-match {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          0deg,
+          rgba(26, 26, 46, 1) 10%,
+          rgba(255, 212, 255, 0) 50%
+        );
+        opacity: 0.8;
+      }
+      main {
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        margin-top: 10rem;
+        right: 0;
+        top: 0;
+        .grid-layout {
+          width: 50%;
+          .game-modes {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            height: 100%;
+            margin-top: 8rem;
+            margin-left: 4rem;
+            .link {
+              font-size: 3rem;
+              font-family: "Exo 2", sans-serif;
+              font-weight: 700;
+              text-shadow: 0.125rem 0.125rem 0.93rem rgb(0 0 0 / 60%);
+              color: white;
+              transition: all 0.08s ease-in-out;
+            }
+            .link:hover {
+              cursor: pointer;
+              color: #a19bd9;
+              transform: scale(1.009);
+            }
+          }
+        }
+      }
+    }
+  }
+  .home-side-bar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 3.5rem;
+    background-color: rgba(16, 16, 28, 0.949);
+    z-index: 1;
+    .side-bar-content {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .home-container {
+    .home-main-view {
+      width: 100%;
+    }
+    .home-side-bar {
+      position: fixed;
+      top: 0;
+      right: -3.5rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .home-container {
+    .home-main-view {
+      background: #1a1a2e;
+      .home-nav-bar {
+        width: 100%;
+        height: 5rem;
+        header {
+          padding-left: 1rem;
+          padding-right: 1rem;
+          .logo {
+            a {
+              img {
+                width: 100px;
+                height: 26px;
+              }
+            }
+          }
+        }
+      }
+      .home-main {
+        .video-background {
+          img {
+            display: flex;
+            height: 60vh;
+            width: 100%;
+            object-fit: cover;
+          }
+          video {
+            display: none;
+          }
+        }
+        .bg-color-match {
+          position: fixed;
+          bottom: calc(50vh - 5.25rem);
+          left: 0;
+          width: 100%;
+          height: 50%;
+          background: linear-gradient(
+            0deg,
+            rgba(26, 26, 46, 1) 10%,
+            rgba(255, 212, 255, 0) 55%
+          );
+          opacity: 1;
+        }
+        main {
+          .grid-layout {
+            margin-top: 13.5rem;
+            .game-modes {
+              margin-left: 2rem;
+              .link {
+                font-size: 1.8rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

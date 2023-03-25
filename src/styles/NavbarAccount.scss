@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,700&display=swap");
+.account-info {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.2rem;
+  margin-top: -4px;
+  .search-bar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    transform: scale(0.8);
+    cursor: pointer;
+
+    .skew-background-1 {
+      position: absolute;
+      top: 15px;
+      left: -6px;
+      width: 50%;
+      background-color: rgba(16, 16, 28, 0.4);
+      height: 3.8rem;
+      padding-left: 6px;
+      transform: skewX(-12deg);
+      border-radius: 0.25rem 0 0 0.25rem;
+      z-index: 1;
+    }
+    picture {
+      position: relative;
+      top: 3px;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      img {
+        width: 65%;
+        height: 65%;
+      }
+    }
+    picture:hover {
+      img {
+        transform: scale(1.1);
+      }
+    }
+    .skew-background-2 {
+      position: absolute;
+      top: 15px;
+      right: -6px;
+      width: 50%;
+      background-color: rgba(16, 16, 28, 0.4);
+      height: 3.8rem;
+      padding-right: 6px;
+      transform: skewX(-12deg);
+      border-radius: 0 0.25rem 0.25rem 0;
+      z-index: 1;
+    }
+  }
+  .search-bar:hover {
+    .skew-background-1 {
+      background-color: rgba(16, 16, 28, 0.8);
+    }
+    .skew-background-2 {
+      background-color: rgba(16, 16, 28, 0.8);
+    }
+  }
+  .account {
+    display: flex;
+    padding: 5px;
+    margin-right: 1.5rem;
+    .profile-avatar {
+      position: relative;
+      height: 3rem;
+      margin-right: 2rem;
+      width: 3rem;
+      picture {
+        position: absolute;
+        left: 0;
+        top: 0.2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 100%;
+          border-radius: 50%;
+        }
+      }
+      > div {
+        position: absolute;
+        top: 1rem;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 45%;
+          height: 45%;
+          border-radius: 50%;
+        }
+      }
+    }
+    .profile-stats {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-weight: 700;
+      font-family: "Exo 2", sans-serif;
+      .user-level {
+        font-size: 13px;
+        color: #fecd19;
+        margin-bottom: 0.1rem;
+      }
+      .user-title {
+        font-size: 0.6rem;
+        margin-bottom: 0.45rem;
+      }
+      .user-level-progress {
+        position: relative;
+        height: 0.75rem;
+        width: 4.2rem;
+        border-radius: 3px;
+        background-color: hsla(0, 0%, 100%, 0.4);
+        border-radius: 0.15rem;
+        transform: skewX(-12deg);
+        .progress-bar {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          background-color: #fecd19;
+          border-radius: 0.15rem;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 680px) {
+  .account-info {
+    gap: 0.5rem;
+    .account {
+      margin: 0;
+      .profile-avatar {
+        margin: 0;
+      }
+      .profile-stats {
+        display: none;
+      }
+    }
+  }
+}
