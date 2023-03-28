@@ -7,14 +7,15 @@ import NavbarAccount from "../components/NavbarAccount";
 import UpgradeBar from "../components/UpgradeBar";
 import IMap from "../interfaces/IMap";
 import IGame from "../interfaces/IGame";
-
+import { createGame } from "../redux/slices/gamesSlice";
+import { useDispatch } from "react-redux";
 
 const MapDetails = () => {
     const [gameID, setGameID] = useState(uuidv4());
     const [map, setMap] = useState<IMap>({} as IMap);
     const [game, setGame] = useState<IGame>({} as IGame);
     let { state } = useLocation();
-    console.log(state)
+    const dispatch = useDispatch()
     useEffect(() => {
         if (!map._id) {
             setMap(state.map)
@@ -59,6 +60,7 @@ const MapDetails = () => {
             data: game,
         })
             .then((response) => {
+                dispatch(createGame(game) as any)
                 const start = document.getElementById("start")!;
                 start.click();
             })
@@ -130,7 +132,7 @@ const MapDetails = () => {
                         >
                             START GAME!
                         </button>
-                        <Link id="start" to={`../../game/${gameID}`} state={{ map: state.map, game: game }}></Link>
+                        <Link id="start" to={`../../game/${gameID}`} state={{ game: game }}></Link>
                     </div>
                 </div>
                 <div className="maps-side-bar">

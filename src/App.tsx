@@ -14,26 +14,31 @@ import { RootState } from "./redux/store"
 import { AuthState } from "./redux/slices/authSlice";
 import { useDispatch } from 'react-redux';
 import { getMaps, mapsState } from './redux/slices/mapsSlice';
+import { gamesState } from './redux/slices/gamesSlice';
+import { getGames } from './redux/slices/gamesSlice';
 
 
 function App() {
+  const dispatch = useDispatch()
+
   const [user, setUser] = useState<IUser | null>(null);
 
   const authState = useSelector<RootState, AuthState>(state => state.userHandler);
+  const mapsState = useSelector<RootState, mapsState>(state => state.mapsReducer);
+  const gamesState = useSelector<RootState, gamesState>(state => state.gamesReducer)
 
   useEffect(() => {
     if (authState.user._id) {
       setUser(authState.user)
+      dispatch(getGames(authState.user._id) as any)
     }
-    const sessionUser = sessionStorage.getItem('user')
-    if (sessionUser) {
-      console.log("Setin user")
-      setUser(JSON.parse(sessionUser))
-    }
+    // const sessionUser = sessionStorage.getItem('user')
+    // if (sessionUser) {
+    //   console.log("Setin user")
+    //   setUser(JSON.parse(sessionUser))
+    // }
   }, [authState])
 
-  const mapsState = useSelector<RootState, mapsState>(state => state.mapsReducer);
-  const dispatch = useDispatch()
   useEffect(() => {
     const sessionMaps = sessionStorage.getItem('maps')
     if (mapsState.maps.length === 0) {

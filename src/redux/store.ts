@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import mapsSlice from './slices/mapsSlice'
 import storage from "redux-persist/lib/storage"
 import  {persistReducer} from "redux-persist"
+import gamesSlice from './slices/gamesSlice'
 
 const persistConfig = {
     key: "root",
@@ -13,13 +14,18 @@ const persistConfig = {
 
 const reducer = combineReducers({
     userHandler: userSliceReducer,
-    mapsReducer: mapsSlice
+    mapsReducer: mapsSlice,
+    gamesReducer: gamesSlice
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer)
 
 export const store = configureStore({
-    reducer: persistedReducer
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

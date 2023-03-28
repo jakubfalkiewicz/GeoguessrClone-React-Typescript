@@ -1,9 +1,3 @@
-// const GameLogic = () => {
-//   return (<>
-//     <div>Witam</div>
-//   </>)
-// }
-// export default GameLogic
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 import {
   GoogleMap,
@@ -11,16 +5,19 @@ import {
   Marker,
   Polyline,
 } from "@react-google-maps/api";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import "../styles/GameLogic.scss";
 import IGame from "../interfaces/IGame";
 import ILocation from "../interfaces/ILocation";
+import { updateGame } from "../redux/slices/gamesSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { gamesState } from '../redux/slices/gamesSlice';
+import { RootState } from "../redux/store"
 
 interface mapSizeInterface {
   height: string;
   width: string;
 }
-
 
 const GameLogic = () => {
 
@@ -38,7 +35,10 @@ const GameLogic = () => {
   const [hidden, setHidden] = useState(true);
   const [game, setGame] = useState<IGame>({} as IGame)
   const [mapCenter, setMapCenter] = useState<google.maps.LatLng>({} as google.maps.LatLng);
+  const gamesState = useSelector<RootState, gamesState>(state => state.gamesReducer)
   let { state } = useLocation();
+  const { id } = useParams();
+  const dispatch = useDispatch()
 
   interface markerInterface {
     lat: number;
@@ -53,8 +53,11 @@ const GameLogic = () => {
   }, [map])
 
   const onMapLoad = useCallback((map: google.maps.Map) => {
-    console.log(state)
+    // TODO FIX error "Cannot assign to read only property 'currentRound' of object '#<Object>'"
+    console.log(gamesState.games.filter(gm => gm.gameId === id)[0])
+    console.log(state.game)
     setGame(state.game)
+    // setGame(gamesState.games.filter(gm => gm.gameId === id)[0])
     map.setOptions(mapOptions);
     setMap(map);
     loadCenter(map, state.game);
@@ -114,7 +117,6 @@ const GameLogic = () => {
 
   function loadCenter(map: google.maps.Map, game: IGame) {
     const geocoder = new window.google.maps.Geocoder();
-    console.log(game.locations)
     if (game?.country) {
       geocoder.geocode({ address: game.country }, function (results, status) {
         map.setCenter(results![0].geometry.location);
@@ -231,6 +233,7 @@ const GameLogic = () => {
       setMapSize({} as mapSizeInterface);
       setGameScore(gameScore + roundScore);
       setTimeout(() => {
+        dispatch(updateGame(game) as any);
         loadCenter(map, game);
       }, 100);
     }
