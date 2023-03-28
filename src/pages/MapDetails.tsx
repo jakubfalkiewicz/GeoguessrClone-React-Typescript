@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router";
 import { Link, useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
@@ -21,15 +20,14 @@ const MapDetails = () => {
             setMap(state.map)
             setGameID(uuidv4());
         }
-    }, [map])
+    }, [map, state.map])
     useEffect(() => {
         window.addEventListener("popstate", () => {
+            console.log("popstate")
             window.location.reload();
         });
     }, []);
 
-    // const { id } = useParams();
-    // const map = maps.filter((map) => map._id === id)[0];
     const [move, setMove] = useState(true);
     // const [pan, setPan] = useState(true);
     // const [zoom, setZoom] = useState(true);

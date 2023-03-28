@@ -1,12 +1,11 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/SignUp.scss";
-import { connect } from "react-redux";
 // import { loginUser } from "../ducks/auth/actions";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
 import { loginUser, AuthState } from "../redux/slices/authSlice";
-import { RootState} from "../redux/store";
+import { RootState } from "../redux/store";
 
 interface LoginData {
     email: string;
@@ -29,7 +28,7 @@ const LogIn = () => {
         if (authState.user._id) {
             navigate("/");
         }
-    }, [authState]);
+    }, [authState, navigate]);
 
     return (
         <div className="forms-container">

@@ -30,7 +30,7 @@ const MapsList = () => {
         else {
             dispatch(getMaps() as any)
         }
-    }, [mapsState.maps])
+    }, [mapsState.maps, dispatch])
 
     let { state } = useLocation();
 

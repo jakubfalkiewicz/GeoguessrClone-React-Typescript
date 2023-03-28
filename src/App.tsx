@@ -8,7 +8,6 @@ import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import { useEffect, useState } from "react";
 import IUser from "./interfaces/IUser";
-import IMap from "./interfaces/IMap";
 import WelcomePage from "./pages/WelcomePage";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store"
@@ -28,6 +27,7 @@ function App() {
     }
     const sessionUser = sessionStorage.getItem('user')
     if (sessionUser) {
+      console.log("Setin user")
       setUser(JSON.parse(sessionUser))
     }
   }, [authState])
@@ -42,7 +42,7 @@ function App() {
         dispatch(getMaps() as any)
       }
     }
-  }, [mapsState])
+  }, [mapsState, dispatch])
 
   return (
     <Routes>

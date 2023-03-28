@@ -34,7 +34,7 @@ const Home: React.FC<HomeProps> = ({ user }) => {
                 </div>
                 <div className="home-main">
                     <div className="video-background">
-                        <img src={backgroundImg}></img>
+                        <img src={backgroundImg} alt="background-img"></img>
                         <video autoPlay muted>
                             <source src={video} type="video/mp4" />
                         </video>
@@ -48,7 +48,7 @@ const Home: React.FC<HomeProps> = ({ user }) => {
                                     to="/maps"
                                     className="link"
                                     state={{ user: user }}
-                                    style={{ textDecoration: "none" }}
+                                // style={{ textDecoration: "none" }}
                                 >
                                     SINGLEPLAYER
                                 </Link>

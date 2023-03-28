@@ -5,7 +5,6 @@
 // }
 // export default GameLogic
 import React, { useEffect, useState, useCallback, useMemo } from "react";
-import { useParams } from "react-router";
 import {
   GoogleMap,
   StreetViewPanorama,
